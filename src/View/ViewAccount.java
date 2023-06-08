@@ -9,17 +9,17 @@ import java.util.regex.Pattern;
 public class ViewAccount {
     Scanner scanner = new Scanner(System.in);
     public int menuLogin(){
-        System.out.println("                   ♛ JAVA BILLIARDS MANAGER SYSTEM ♛");
-        System.out.println("                  -----------☬SYSTEM☬--------------");
-        System.out.println("                  ☟☟☟☟☟☟☟☟☟☟☟☟ ☣ LOGIN ☠ ☟☟☟☟☟☟☟☟☟☟☟☟");
-        System.out.println("                  ☟     1. Sign in ⍥      ☟");
-        System.out.println("                  ☟     2. Sign up ⍢      ☟");
-        System.out.println("                  ☟                        ☟");
-        System.out.println("                  ☟                        ☟");
-        System.out.println("                   ♈♉♊♋♌♍♏♐♑♒♓ ");
-        System.out.println("                  ☟                         ☟");
-        System.out.println("                  ☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝");
-        System.out.println("                  ↝ Enter your choice ↜");
+        System.out.println("                   ♛ JAVA BILLIARDS MANAGER SYSTEM ♛          ");
+        System.out.println("                  -----------☬SYSTEM☬--------------           ");
+        System.out.println("                  ☟☟☟☟☟☟☟☟☟☟☟☟ ☣ LOGIN ☠ ☟☟☟☟☟☟☟☟☟☟☟☟            ");
+        System.out.println("                  ☟     1. Sign in ⍥      ☟                  ");
+        System.out.println("                  ☟     2. Sign up ⍢      ☟                  ");
+        System.out.println("                  ☟                        ☟                 ");
+        System.out.println("                  ☟                                         ☟");
+        System.out.println("                   ♈♉♊♋♌♍♏♐♑♒♓                ");
+        System.out.println("                  ☟                         ☟               ");
+        System.out.println("                  ☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝☝              ");
+        System.out.println("                  ↝ Enter your choice ↜                   ");
         return checkChoice();
     }
 

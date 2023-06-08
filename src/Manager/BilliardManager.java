@@ -2,7 +2,6 @@ package Manager;
 
 import Model.Order;
 import Model.Table;
-import View.ViewTable;
 import rw.ReadAndWrite;
 
 import java.util.ArrayList;
@@ -14,10 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class BilliardManager {
     Scanner scanner = new Scanner(System.in);
     public static List<Table> table = new ArrayList<>();
-    Order order = new Order();
 
-    double money = 0;
-    private double totalMoney = 0;
+//    private double totalMoney = 0;
     public BilliardManager(){
         table = ReadAndWrite.readTable();
     }
@@ -43,6 +40,7 @@ public class BilliardManager {
                 return;
             }
         }
+        ReadAndWrite.writeTable(table);
     }
     public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit){
         long diffInMillis = date2.getTime() - date1.getTime();
@@ -54,77 +52,49 @@ public class BilliardManager {
         ReadAndWrite.writeTable(table);
     }
 
-    //Thanh toán bàn
-    public double checkout(int number1){
+//    Thanh toán bàn
+    public void checkout(int number1){
+        int moneys ;
         for (Table table1: table) {
-            for (Order order1: Order.orders) {
                 if(table1.getNumber() == number1){
-                money = (double) getDateDiff(table1.getStartTime(),new Date(),TimeUnit.MINUTES) * 7 + order1.getPrice();
+                moneys = (int) ((double) getDateDiff(table1.getStartTime(),new Date(),TimeUnit.MINUTES) * 7 + table1.getMoney());
                 table1.setAvailable(false);
-            }
+                System.out.println("Money is" +moneys);
+                break;
             }
         }
-        System.out.println("Money is" +money);
-        return money;
+
+
     }
 
-    //Chọn order
-//    public int chooseOrder(){
-//        System.out.println("Enter service number: ");
-//        int orderNumber = Integer.parseInt(scanner.nextLine());
-//        System.out.println("Enter table number: ");
-//        int tableNum = Integer.parseInt(scanner.nextLine());
-//
-//        for (Order o: Order.orders){
-//            for (Table table1: table) {
-//            if(table1.getNumber() == tableNum){
-//                return tableNum;
-//            }
-//            if(o.getId() == orderNumber){
-//                    System.out.println("Service " +o.getName() +"add successful. ");
-//                    return o.getPrice();
-//
-//                }
-//        }
-//
-//        }
-//        System.out.println("Order with id: " +orderNumber + "is not available. ");
-//        return 0;
-//    }
-    public double chooseOrder() {
+
+    public void chooseOrder() {
+//        int moneys = 0;
         System.out.println("Enter service number: ");
         int orderNumber = Integer.parseInt(scanner.nextLine());
         System.out.println("Enter table number: ");
         int tableNum = Integer.parseInt(scanner.nextLine());
-        boolean check = false;
 
         // Kiểm tra danh sách orders và table có rỗng không
         if (table.isEmpty()) {
             System.out.println("There are no tables available.");
-            return 0;
         }
 
         for (Order o : Order.orders) {
             for (Table table1 : table) {
-                if ( o.getId() == orderNumber) {
-                    money += o.getPrice();
-                    table1.setMoney(money);
+                if ( o.getId() == orderNumber && tableNum == table1.getNumber()) {
+                    table1.setMoney(table1.getMoney()+o.getPrice());
                     System.out.println("Service " + o.getName() + " add successful.");
-                    return money;
                 }
             }
         }
-
-
-            System.out.println("Order with id: " + orderNumber + " is not available.");
-        return 0;
     }
-    public void sum(int sum){
-        totalMoney += sum;
-    }
-    public double getMoney(){
-        return totalMoney;
-    }
+//    public void sum(int sum){
+//        totalMoney += sum;
+//    }
+//    public double getMoney(){
+//        return totalMoney;
+//    }
 
 
 }
